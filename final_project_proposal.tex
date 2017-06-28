@@ -68,13 +68,14 @@ Vlad Paul Cosma\\
     \end{itemize}
 
 \section{Methodology}
-    Describe all the different phases/components/steps on how you are planning to solve your previously stated problem. Try to give us a clear picture of your methodology and remember that the project's focus is on deep learning. Try to elaborate on the following points:
-    \begin{itemize}
-        \item Network architecture(s)
-        \item Transfer learning and training from scratch
-        \item Resource management (please consider GPU memory)
-        \item[] $\dots$
-    \end{itemize}
+   In our approach we would like to use the Image segmentation of the GTA (game) frame to train the DeepLab-ResNet architecture. We propose to divide the given set of image into road, cars, lanes., and then use the 
+ necessary activations of the segmentation of the lane, (if possible pedestrians etc,.) to change the angle of vechile steering during the course of game play.
+
+Training of the model can be performed on the mini-batch of images and corresponding ground truth shall be masked with the softmax classifier at the top .During training, some inherent features of the architecture are, masks are downsampled to match the size of the output from the network and during inference, to acquire the output of the same size as the input, bilinear upsampling is also applied. The final segmentation mask is computed using argmax over the logits. As well as an optional fully-connected probabilistic graphical model, namely, CRF, is applied to refine the ultimate predictions.The model achieves 79.7 \% of mean interseaction over union on the test set of PASCAL VOC. 
+
+We will be using the outputs of the architecture to the steer the vehicle in the game using GTA-Plugin for capturing screen and sending commands to vehicle which can be located at https://github.com/ai-tor/DeepGTAV
+
+Considering the resource management, we will be using Nvidia based 1050 GTX as owned by one of the teammates, which is based on Pascal architecture and has 640 cuda cores onboard.
 
 \section{Outcome}
     What is your desired outcome or aspiration for the project?
